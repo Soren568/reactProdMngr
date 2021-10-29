@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import {useParams , Link} from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 const Detail = (props) => {
@@ -15,6 +15,15 @@ const Detail = (props) => {
             .catch(err => console.error(err));
     }, []);
 
+    const deleteProduct =(productId) => {
+        axios.delete('http://localhost:8000/api/products/' + productId)
+            .then(res => {
+                console.log(productId)
+                history.push('/')
+            })
+            .catch(err => console.error(err))
+    }
+
     const goBack = (e) => {
         history.push('/')
     }
@@ -27,7 +36,11 @@ const Detail = (props) => {
                 <p>Price: ${product.price} </p>
                 <p>Description: {product.description} </p>
             </div>
-            <button onClick={goBack} className="bg-purple-400 p-2 text-white rounded hover:text-purple-100 justify-self-end w-full mt-6">Go Back</button>
+            <div className="flex mt-6 justify-evenly">
+                <button onClick={goBack} className="bg-purple-400 p-2 text-white rounded hover:bg-purple-500 justify-self-end text-xs ">Go Back</button>
+                <Link to={"/products/" + product._id + "/edit"} className="bg-purple-400 p-2 text-white rounded hover:bg-purple-500 justify-self-end text-xs">Edit</Link>
+                <button onClick={(e) => {deleteProduct(product._id)}} className="bg-purple-400 p-2 text-white rounded hover:bg-purple-500 justify-self-end text-xs">Delete</button>
+            </div>
         </div>
         </>
     )

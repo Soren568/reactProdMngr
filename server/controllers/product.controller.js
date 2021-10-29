@@ -21,7 +21,7 @@ module.exports.createProduct = (req, res) =>{
 
 module.exports.updateProduct = (req, res) => {
     Product.findOneAndUpdate({ _id: req.params.id}, req.body, {new: true})
-    .then(updatedProduct => res.json({joke: updatedProduct}))
+    .then(updatedProduct => res.json({product: updatedProduct}))
     .catch(err => res.json({message: "Something went wrong", error: err}));
 }
 

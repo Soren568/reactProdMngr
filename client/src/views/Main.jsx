@@ -10,7 +10,7 @@ const Main = (props) => {
 
     // Loads this when Main loads
     useEffect(() => {
-        axios.get('http://localhost:8000/api/products')
+        axios.get('http://localhost:8000/api/products/')
             .then(res => {
                 setProducts(res.data.products);
                 setLoaded(true);
@@ -18,11 +18,16 @@ const Main = (props) => {
             .catch(err => console.log(err))
     }, []);
 
+    // Filter out the deleted product
+    const removeFromDom = productID => {
+        setProducts(products.filter(prod => prod._id != productID))
+    }
+
     return (
         <div>
             <ProductForm/>
             <hr className="my-5"/>
-            {loaded && <ProductList products={products}/>}
+            {loaded && <ProductList products={products} removeFromDom={removeFromDom}/>}
         </div>
     )
 }
