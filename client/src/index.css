@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Practicing using svgs */
+/* remove fill color in svg to make it more customizable here */
+:root{
+    --light-color: #E175F2;
+    --dark-color: #7F75F2;
+}
+#pinkGroup{
+    fill: var(--light-color)
+}
+#purpleGroup{
+    fill: var(--dark-color)
+}
+/* Animating on hover */
+#pink1,
+#pink2,
+#purple1{
+    transition: all 1s ease;
+}
+#pink2 {
+    transform: translateX(-100%)
+}
+svg:hover #purple1{
+    transform:translateX(20%)
+}
+svg:hover #pink1{
+    transform: translateX(40%);
+    opacity: 0;
+}
+svg:hover #pink2{
+    transform: translateX(0%);
+}
+
+/* svg{
+    cursor: pointer;
+} */

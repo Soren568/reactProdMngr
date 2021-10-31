@@ -16,7 +16,7 @@ const Main = (props) => {
                 setLoaded(true);
             })
             .catch(err => console.log(err))
-    }, []);
+    }, [products]);
 
     // Filter out the deleted product
     const removeFromDom = productID => {

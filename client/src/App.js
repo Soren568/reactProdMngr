@@ -2,7 +2,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import Detail from './views/Detail';
 import Main from './views/Main';
+import MainRefactored from './views/Refactored/MainRefactored';
 import Update from './views/Update';
+import UpdateRefactored from './views/Refactored/UpdateRefactored';
 
 function App() {
   
@@ -14,10 +16,10 @@ function App() {
             <Detail />
           </Route>
           <Route exact path="/">
-            <Main/>
+            <MainRefactored/>
           </Route>
           <Route path="/products/:id/edit">
-            <Update/>
+            <UpdateRefactored/>
           </Route>
         </BrowserRouter>
         </div>
